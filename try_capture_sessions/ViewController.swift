@@ -44,6 +44,7 @@ class ViewController: UIViewController {
 
         qrCaptureSession = nil
         qrCodeLabel.text = ""
+        qrCaptureButton.setTitle("QR Capture", for: .normal)
 
         if photoCaptureSession == nil {
             photoCaptureSession = PhotoCaptureSession(captureDelegate: self, videoPreviewView: self.view)
@@ -60,10 +61,11 @@ class ViewController: UIViewController {
     }
 
     func bringSubviewsToFront() {
-        view.bringSubview(toFront: qrCaptureButton)
+        view.bringSubview(toFront: photoImageView)
         view.bringSubview(toFront: photoCaptureButton)
         view.bringSubview(toFront: qrCodeLabel)
-        view.bringSubview(toFront: photoImageView)
+        view.bringSubview(toFront: qrCaptureButton)
+        print("qrCaptureButton.frame", qrCaptureButton.frame)
     }
 }
 
