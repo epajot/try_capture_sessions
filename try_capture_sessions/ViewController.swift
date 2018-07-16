@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         print("... qrCaptureTapped")
         photoCaptureSession = nil
         photoCaptureButton.setTitle("Photo Capture", for: .normal)
+        photoImageView.image = nil
         if qrCaptureSession == nil {
             qrCaptureSession = QRCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
         }
