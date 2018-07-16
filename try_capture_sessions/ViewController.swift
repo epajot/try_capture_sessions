@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         if qrCaptureSession == nil {
             qrCaptureSession = QRCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
         }
+        qrCodeLabel.text = ""
         qrCaptureSession?.startRunning()
         bringSubviewsToFront()
     }
@@ -42,6 +43,7 @@ class ViewController: UIViewController {
         print("... photoCaptureTapped")
 
         qrCaptureSession = nil
+        qrCodeLabel.text = ""
 
         if photoCaptureSession == nil {
             photoCaptureSession = PhotoCaptureSession(captureDelegate: self, videoPreviewView: self.view)
@@ -70,9 +72,10 @@ extension ViewController: QRCaptureDelegate {
     func qrCodeCaptured(code: String) {
         print("qrCodeCaptured", code)
 
-        qrCodeLabel.text = code
-
-        qrCaptureSession?.stopRunning()
+        DispatchQueue.main.async{
+            self.qrCodeLabel.text = code
+        }
+       qrCaptureSession?.stopRunning()
     }
 }
 
@@ -80,6 +83,10 @@ extension ViewController: PhotoCaptureDelegate {
 
     func imageCaptured(image: UIImage) {
         print("ViewController: imageCaptured", image.size)
+
+        DispatchQueue.main.async{
+            self.photoImageView.image = image
+        }
     }
 }
 
