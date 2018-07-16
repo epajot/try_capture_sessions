@@ -12,6 +12,8 @@
 		9DFD41F420FC9D0D0018F121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD41F220FC9D0D0018F121 /* Main.storyboard */; };
 		9DFD41F620FC9D0E0018F121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD41F520FC9D0E0018F121 /* Assets.xcassets */; };
 		9DFD41F920FC9D0E0018F121 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD41F720FC9D0E0018F121 /* LaunchScreen.storyboard */; };
+		9DFD420120FC9E900018F121 /* QRCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD420020FC9E900018F121 /* QRCaptureSession.swift */; };
+		9DFD420320FCA4EC0018F121 /* PhotoCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD420220FCA4EC0018F121 /* PhotoCaptureSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		9DFD41F520FC9D0E0018F121 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DFD41F820FC9D0E0018F121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DFD41FA20FC9D0E0018F121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DFD420020FC9E900018F121 /* QRCaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCaptureSession.swift; sourceTree = "<group>"; };
+		9DFD420220FCA4EC0018F121 /* PhotoCaptureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +60,10 @@
 			children = (
 				9DFD41EE20FC9D0D0018F121 /* AppDelegate.swift */,
 				9DFD41F020FC9D0D0018F121 /* ViewController.swift */,
-				9DFD41F220FC9D0D0018F121 /* Main.storyboard */,
+				9DFD420020FC9E900018F121 /* QRCaptureSession.swift */,
+				9DFD420220FCA4EC0018F121 /* PhotoCaptureSession.swift */,
 				9DFD41F520FC9D0E0018F121 /* Assets.xcassets */,
+				9DFD41F220FC9D0D0018F121 /* Main.storyboard */,
 				9DFD41F720FC9D0E0018F121 /* LaunchScreen.storyboard */,
 				9DFD41FA20FC9D0E0018F121 /* Info.plist */,
 			);
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DFD420120FC9E900018F121 /* QRCaptureSession.swift in Sources */,
 				9DFD41F120FC9D0D0018F121 /* ViewController.swift in Sources */,
+				9DFD420320FCA4EC0018F121 /* PhotoCaptureSession.swift in Sources */,
 				9DFD41EF20FC9D0D0018F121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
