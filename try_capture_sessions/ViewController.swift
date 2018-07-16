@@ -29,6 +29,12 @@ class ViewController: UIViewController {
  
     @IBAction func qrCaptureTapped(_ sender: Any) {
         print("... qrCaptureTapped")
+        qrCaptureButton.isSelected = true
+        photoCaptureButton.isSelected = false
+        qrCaptureOn() 
+    }
+
+    func qrCaptureOn() {
         photoCaptureSession = nil
         photoCaptureButton.setTitle("Photo Capture", for: .normal)
         photoImageView.image = nil
@@ -42,6 +48,12 @@ class ViewController: UIViewController {
     
     @IBAction func photoCaptureTapped(_ sender: Any) {
         print("... photoCaptureTapped")
+        qrCaptureButton.isSelected = false
+        photoCaptureButton.isSelected = true
+        photoCaptureOn()
+    }
+
+    func photoCaptureOn() {
 
         qrCaptureSession = nil
         qrCodeLabel.text = ""
@@ -60,6 +72,8 @@ class ViewController: UIViewController {
         }
         bringSubviewsToFront()
     }
+
+
 
     func bringSubviewsToFront() {
         view.bringSubview(toFront: photoImageView)
