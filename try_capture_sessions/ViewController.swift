@@ -15,10 +15,15 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var qrCaptureButton: UIButton!
     @IBOutlet weak var photoCaptureButton: UIButton!
+
+    @IBOutlet weak var qrCodeLabel: UILabel!
+    
+    @IBOutlet weak var photoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bringSubviewsToFront()
     }
 
  
@@ -30,8 +35,7 @@ class ViewController: UIViewController {
             qrCaptureSession = QRCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
         }
         qrCaptureSession?.startRunning()
-        view.bringSubview(toFront: qrCaptureButton)
-        view.bringSubview(toFront: photoCaptureButton)
+        bringSubviewsToFront()
     }
     
     @IBAction func photoCaptureTapped(_ sender: Any) {
@@ -44,14 +48,20 @@ class ViewController: UIViewController {
             photoCaptureButton.setTitle("Take photo!", for: .normal)
             photoCaptureButton.setNeedsLayout()
             photoCaptureSession?.startRunning()
-      } else {
+        } else {
             if (photoCaptureSession?.takePhoto)! {
             } else {
                 photoCaptureSession?.takePhoto = true
             }
-       }
+        }
+        bringSubviewsToFront()
+    }
+
+    func bringSubviewsToFront() {
         view.bringSubview(toFront: qrCaptureButton)
         view.bringSubview(toFront: photoCaptureButton)
+        view.bringSubview(toFront: qrCodeLabel)
+        view.bringSubview(toFront: photoImageView)
     }
 }
 
@@ -59,6 +69,8 @@ extension ViewController: QRCaptureDelegate {
 
     func qrCodeCaptured(code: String) {
         print("qrCodeCaptured", code)
+
+        qrCodeLabel.text = code
 
         qrCaptureSession?.stopRunning()
     }

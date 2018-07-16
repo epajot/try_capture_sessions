@@ -34,21 +34,42 @@
                                     <action selector="photoCaptureTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="thH-br-fQB"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-wT-MoW" userLabel="QR Code Label">
+                                <rect key="frame" x="20" y="532" width="157.5" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.70966715359999999" blue="0.088372796049999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nyr-aN-tHj">
+                                <rect key="frame" x="197.5" y="443" width="157.5" height="119"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ISH-Au-RTR" firstAttribute="top" secondItem="7Zz-wT-MoW" secondAttribute="bottom" constant="30" id="1KA-s7-OaE"/>
                             <constraint firstItem="1Xb-cb-i4T" firstAttribute="width" secondItem="ISH-Au-RTR" secondAttribute="width" id="1jr-YI-IDf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1Xb-cb-i4T" secondAttribute="bottom" constant="45" id="4Gq-U6-gOe"/>
+                            <constraint firstItem="ISH-Au-RTR" firstAttribute="leading" secondItem="7Zz-wT-MoW" secondAttribute="leading" id="7LP-fA-mjZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ISH-Au-RTR" secondAttribute="bottom" constant="45" id="7b9-SD-njX"/>
                             <constraint firstItem="ISH-Au-RTR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="88F-zX-dg9"/>
+                            <constraint firstItem="ISH-Au-RTR" firstAttribute="height" secondItem="7Zz-wT-MoW" secondAttribute="height" id="IQX-MN-haI"/>
+                            <constraint firstItem="Nyr-aN-tHj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="423" id="KOp-hc-OrP"/>
+                            <constraint firstItem="ISH-Au-RTR" firstAttribute="width" secondItem="7Zz-wT-MoW" secondAttribute="width" id="OZm-ZG-slY"/>
+                            <constraint firstItem="7Zz-wT-MoW" firstAttribute="bottom" secondItem="Nyr-aN-tHj" secondAttribute="bottom" id="Px4-vj-Xu3"/>
+                            <constraint firstItem="1Xb-cb-i4T" firstAttribute="leading" secondItem="Nyr-aN-tHj" secondAttribute="leading" id="eg9-kW-0As"/>
                             <constraint firstItem="1Xb-cb-i4T" firstAttribute="leading" secondItem="ISH-Au-RTR" secondAttribute="trailing" constant="20" id="oRu-AT-yyu"/>
+                            <constraint firstItem="1Xb-cb-i4T" firstAttribute="width" secondItem="Nyr-aN-tHj" secondAttribute="width" id="scc-Dg-m9d"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1Xb-cb-i4T" secondAttribute="trailing" constant="20" id="z18-OJ-Qm1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="photoCaptureButton" destination="1Xb-cb-i4T" id="z8b-OL-86c"/>
+                        <outlet property="photoImageView" destination="Nyr-aN-tHj" id="qK8-bs-dKF"/>
                         <outlet property="qrCaptureButton" destination="ISH-Au-RTR" id="jQG-38-u45"/>
+                        <outlet property="qrCodeLabel" destination="7Zz-wT-MoW" id="xjE-KU-3Bk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
