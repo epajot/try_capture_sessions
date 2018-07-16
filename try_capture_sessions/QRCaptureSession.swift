@@ -44,7 +44,10 @@ class QRCaptureSession: NSObject {
 
     var isRunning: Bool { return self.qrCaptureSession!.isRunning }
 
-    func startRunning() { self.qrCaptureSession?.startRunning() }
+    func startRunning() {
+        self.qrCodeFrameView.frame = CGRect.zero
+        self.qrCaptureSession?.startRunning()
+    }
 
     func stopRunning() { self.qrCaptureSession?.stopRunning() }
 
