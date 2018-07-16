@@ -20,23 +20,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISH-Au-RTR">
-                                <rect key="frame" x="20" y="592" width="157.5" height="30"/>
+                                <rect key="frame" x="20" y="588" width="157.5" height="34"/>
                                 <color key="backgroundColor" red="1" green="0.70966715359999999" blue="0.088372796049999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="QR Capture"/>
                                 <connections>
                                     <action selector="qrCaptureTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IyX-3W-JpU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xb-cb-i4T">
-                                <rect key="frame" x="197.5" y="592" width="157.5" height="30"/>
+                                <rect key="frame" x="197.5" y="588" width="157.5" height="34"/>
                                 <color key="backgroundColor" red="1" green="0.70966715359999999" blue="0.088372796049999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Photo Capture"/>
                                 <connections>
                                     <action selector="photoCaptureTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="thH-br-fQB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-wT-MoW" userLabel="QR Code Label">
-                                <rect key="frame" x="20" y="532" width="157.5" height="30"/>
+                                <rect key="frame" x="20" y="524" width="157.5" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.70966715359999999" blue="0.088372796049999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
