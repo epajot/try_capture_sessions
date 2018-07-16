@@ -23,8 +23,9 @@ class ViewController: UIViewController {
 
  
     @IBAction func qrCaptureTapped(_ sender: Any) {
-        print("qrCaptureTapped")
+        print("... qrCaptureTapped")
         photoCaptureSession = nil
+        photoCaptureButton.setTitle("Photo Capture", for: .normal)
         if qrCaptureSession == nil {
             qrCaptureSession = QRCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
         }
@@ -34,13 +35,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func photoCaptureTapped(_ sender: Any) {
-        print("photoCaptureTapped")
+        print("... photoCaptureTapped")
+
         qrCaptureSession = nil
+
         if photoCaptureSession == nil {
             photoCaptureSession = PhotoCaptureSession(captureDelegate: self, videoPreviewView: self.view)
-        }
-        photoCaptureSession?.startRunning()
-        photoCaptureSession?.takePhoto = true
+            photoCaptureButton.setTitle("Take photo!", for: .normal)
+            photoCaptureButton.setNeedsLayout()
+            photoCaptureSession?.startRunning()
+      } else {
+            if (photoCaptureSession?.takePhoto)! {
+            } else {
+                photoCaptureSession?.takePhoto = true
+            }
+       }
         view.bringSubview(toFront: qrCaptureButton)
         view.bringSubview(toFront: photoCaptureButton)
     }
@@ -52,7 +61,6 @@ extension ViewController: QRCaptureDelegate {
         print("qrCodeCaptured", code)
 
         qrCaptureSession?.stopRunning()
-
     }
 }
 
@@ -60,9 +68,6 @@ extension ViewController: PhotoCaptureDelegate {
 
     func imageCaptured(image: UIImage) {
         print("ViewController: imageCaptured", image.size)
-
-        photoCaptureSession?.stopRunning()
-
     }
 }
 

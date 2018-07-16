@@ -109,9 +109,9 @@ extension PhotoCaptureSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         //print("captureOutput")
 
         if takePhoto {
-            takePhoto = false
 
             if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
+                takePhoto = false
 
                 print("captureOutput image.size", image.size)
 
