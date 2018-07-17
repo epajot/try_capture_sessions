@@ -1,5 +1,5 @@
 //
-//  QRCaptureSession.swift
+//  QRCaptureSession.swift  v.0.1.0
 //  Stick-Scan
 //
 //  Created by Rudolf Farkas on 14.07.18.

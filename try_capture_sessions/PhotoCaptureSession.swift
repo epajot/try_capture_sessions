@@ -1,5 +1,5 @@
 //
-//  PhotoCaptureSession.swift
+//  PhotoCaptureSession.swift v.0.1.0
 //  try_capture_sessions
 //
 //  Created by Rudolf Farkas on 16.07.18.
