@@ -33,7 +33,7 @@ class QR_and_PhotoCaptureSession: NSObject {
     private weak var photoCaptureDelegate: PhotoCaptureDelegate?
     weak var previewView: UIView?
 
-    private var qrCaptureSession: AVCaptureSession?
+    private var qrAndPhotoCaptureSession: AVCaptureSession?
     private var previewLayer: AVCaptureVideoPreviewLayer?
 
     private var qrCodeFrameView: UIView = {
@@ -45,26 +45,26 @@ class QR_and_PhotoCaptureSession: NSObject {
 
     var takePhoto = false
 
-    var isRunning: Bool { return self.qrCaptureSession!.isRunning }
+    var isRunning: Bool { return self.qrAndPhotoCaptureSession!.isRunning }
 
     func startRunning() {
         self.qrCodeFrameView.frame = CGRect.zero
-        self.qrCaptureSession?.startRunning()
+        self.qrAndPhotoCaptureSession?.startRunning()
     }
 
-    func stopRunning() { self.qrCaptureSession?.stopRunning() }
+    func stopRunning() { self.qrAndPhotoCaptureSession?.stopRunning() }
 
     init(qrCaptureDelegate: QRCaptureDelegate, photoCaptureDelegate: PhotoCaptureDelegate, videoPreviewView: UIView) {
         self.qrCaptureDelegate = qrCaptureDelegate
         self.photoCaptureDelegate = photoCaptureDelegate
         self.previewView = videoPreviewView
         super.init()
-        self.qrCaptureSession = createSession()
-        print("--- QRCaptureSession init")
+        self.qrAndPhotoCaptureSession = createSession()
+        print("--- QR_and_PhotoCaptureSession init")
     }
 
     deinit {
-        print("--- QRCaptureSession deinit")
+        print("--- QR_and_PhotoCaptureSession deinit")
         previewLayer?.removeFromSuperlayer()
         qrCodeFrameView.removeFromSuperview()
     }
@@ -89,23 +89,24 @@ class QR_and_PhotoCaptureSession: NSObject {
             // Set the input device on the capture session.
             session.addInput(input)
 
-            // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
+            // Initialize a AVCaptureMetadataOutput object for QR code capture
             let captureMetadataOutput = AVCaptureMetadataOutput()
-            session.addOutput(captureMetadataOutput)
+            session.addOutput(captureMetadataOutput) // set it as the output device to the capture session
 
-            // Set delegate and use the default dispatch queue to execute the call back
+            // Set delegate and use the default dispatch queue to execute the callback
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = self.supportedCodeTypes
 
-            // Initialize a AVCaptureVideoDataOutput object and set it as the output device to the capture session.
-            let dataOutput = AVCaptureVideoDataOutput()
-            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString):NSNumber(value:kCVPixelFormatType_32BGRA)] as [String : Any]
+            // Initialize a AVCaptureVideoDataOutput object and .
+            let videoDataOutput = AVCaptureVideoDataOutput()
+            videoDataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString):NSNumber(value:kCVPixelFormatType_32BGRA)] as [String : Any]
 
-            dataOutput.alwaysDiscardsLateVideoFrames = true
-            session.addOutput(dataOutput)
+            videoDataOutput.alwaysDiscardsLateVideoFrames = true
+            session.addOutput(videoDataOutput) // set it as the output device to the capture session
 
+            // Set delegate and use the custom dispatch queue to execute the callback
             let queue = DispatchQueue(label: "try-capture-sessions.captureQueue")
-            dataOutput.setSampleBufferDelegate(self, queue: queue)
+            videoDataOutput.setSampleBufferDelegate(self, queue: queue)
 
         } catch {
             // If any error occurs, simply print it and return.
@@ -163,9 +164,7 @@ extension QR_and_PhotoCaptureSession: AVCaptureVideoDataOutputSampleBufferDelega
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
 
         //print("captureOutput")
-
         if takePhoto {
-
             if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
                 takePhoto = false
 

@@ -11,7 +11,6 @@ import UIKit
 class QR_and_PhotoCaptureViewController: UIViewController {
 
     var qrAndPhotoCaptureSession: QR_and_PhotoCaptureSession?
-//    var photoCaptureSession: PhotoCaptureSession?
 
     @IBOutlet weak var qrCaptureButton: UIButton!
     @IBOutlet weak var photoCaptureButton: UIButton!
@@ -51,34 +50,19 @@ class QR_and_PhotoCaptureViewController: UIViewController {
     
     @IBAction func photoCaptureButtonTapped(_ sender: UIButton) {
         print("... photoCaptureButtonTapped")
-//        qrCaptureButton.isSelected = false
-//        photoCaptureButton.isSelected = true
-        photoCaptureOn()
+        photoCaptureNow()
     }
 
-    func photoCaptureOn() {
-//
-//        qrandphotoCaptureSession = nil
-//        qrCodeLabel.text = ""
-//        qrCaptureButton.setTitle("QR Capture", for: .normal)
-//
-//        if photoCaptureSession == nil {
-//            photoCaptureSession = PhotoCaptureSession(captureDelegate: self, videoPreviewView: self.view)
-//            photoCaptureButton.setTitle("Take photo!", for: .normal)
-//            photoCaptureButton.setNeedsLayout()
-//            photoCaptureSession?.startRunning()
-//        } else {
+    func photoCaptureNow() {
+
         qrAndPhotoCaptureSession?.startRunning()
 
-            if (qrAndPhotoCaptureSession?.takePhoto)! {
-            } else {
-                qrAndPhotoCaptureSession?.takePhoto = true
-            }
-//        }
-//        bringSubviewsToFront()
+        if (qrAndPhotoCaptureSession?.takePhoto)! {
+        } else {
+            qrAndPhotoCaptureSession?.takePhoto = true
+        }
+
     }
-
-
 
     func bringSubviewsToFront() {
         view.bringSubview(toFront: photoImageView)
@@ -101,12 +85,21 @@ extension QR_and_PhotoCaptureViewController: QRCaptureDelegate {
 }
 
 extension QR_and_PhotoCaptureViewController: PhotoCaptureDelegate {
-
+    
     func imageCaptured(image: UIImage) {
         print("ViewController: imageCaptured", image.size)
-
+        
         DispatchQueue.main.async{
             self.photoImageView.image = image
+        }
+        
+        let photoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+        
+        photoViewController.photo = image
+
+        DispatchQueue.main.async {
+            self.present(photoViewController, animated: true, completion: {
+            })
         }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9D37F6A120FDE55C00D3404C /* QR_and_PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37F6A020FDE55C00D3404C /* QR_and_PhotoCaptureViewController.swift */; };
 		9D37F6A320FDEFD700D3404C /* QR_and_PhotoCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37F6A220FDEFD700D3404C /* QR_and_PhotoCaptureSession.swift */; };
+		9D37F6A520FE54E700D3404C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37F6A420FE54E700D3404C /* PhotoViewController.swift */; };
 		9DFD41EF20FC9D0D0018F121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD41EE20FC9D0D0018F121 /* AppDelegate.swift */; };
 		9DFD41F120FC9D0D0018F121 /* QR_or_PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD41F020FC9D0D0018F121 /* QR_or_PhotoCaptureViewController.swift */; };
 		9DFD41F420FC9D0D0018F121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD41F220FC9D0D0018F121 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		9D37F6A020FDE55C00D3404C /* QR_and_PhotoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QR_and_PhotoCaptureViewController.swift; sourceTree = "<group>"; };
 		9D37F6A220FDEFD700D3404C /* QR_and_PhotoCaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QR_and_PhotoCaptureSession.swift; sourceTree = "<group>"; };
+		9D37F6A420FE54E700D3404C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		9DFD41EB20FC9D0D0018F121 /* try_capture_sessions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = try_capture_sessions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DFD41EE20FC9D0D0018F121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DFD41F020FC9D0D0018F121 /* QR_or_PhotoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QR_or_PhotoCaptureViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				9DFD420220FCA4EC0018F121 /* PhotoCaptureSession.swift */,
 				9D37F6A020FDE55C00D3404C /* QR_and_PhotoCaptureViewController.swift */,
 				9D37F6A220FDEFD700D3404C /* QR_and_PhotoCaptureSession.swift */,
+				9D37F6A420FE54E700D3404C /* PhotoViewController.swift */,
 				9DFD41F520FC9D0E0018F121 /* Assets.xcassets */,
 				9DFD41F220FC9D0D0018F121 /* Main.storyboard */,
 				9DFD41F720FC9D0E0018F121 /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 				9DFD420120FC9E900018F121 /* QRCaptureSession.swift in Sources */,
 				9DFD41F120FC9D0D0018F121 /* QR_or_PhotoCaptureViewController.swift in Sources */,
 				9D37F6A320FDEFD700D3404C /* QR_and_PhotoCaptureSession.swift in Sources */,
+				9D37F6A520FE54E700D3404C /* PhotoViewController.swift in Sources */,
 				9DFD420320FCA4EC0018F121 /* PhotoCaptureSession.swift in Sources */,
 				9DFD41EF20FC9D0D0018F121 /* AppDelegate.swift in Sources */,
 			);
