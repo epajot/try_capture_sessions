@@ -10,8 +10,8 @@ import UIKit
 
 class QR_and_PhotoCaptureViewController: UIViewController {
 
-    var qrCaptureSession: QR_and_PhotoCaptureSession?
-    var photoCaptureSession: PhotoCaptureSession?
+    var qrandphotoCaptureSession: QR_and_PhotoCaptureSession?
+//    var photoCaptureSession: PhotoCaptureSession?
 
     @IBOutlet weak var qrCaptureButton: UIButton!
     @IBOutlet weak var photoCaptureButton: UIButton!
@@ -43,14 +43,11 @@ class QR_and_PhotoCaptureViewController: UIViewController {
     }
 
     func qrCaptureOn() {
-        photoCaptureSession = nil
-//        photoCaptureButton.setTitle("Photo Capture", for: .normal)
-//        photoImageView.image = nil
-        if qrCaptureSession == nil {
-            qrCaptureSession = QR_and_PhotoCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
+        if qrandphotoCaptureSession == nil {
+            qrandphotoCaptureSession = QR_and_PhotoCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
         }
 //        qrCodeLabel.text = ""
-        qrCaptureSession?.startRunning()
+        qrandphotoCaptureSession?.startRunning()
         bringSubviewsToFront()
     }
     
@@ -62,23 +59,23 @@ class QR_and_PhotoCaptureViewController: UIViewController {
     }
 
     func photoCaptureOn() {
-
-        qrCaptureSession = nil
-        qrCodeLabel.text = ""
-        qrCaptureButton.setTitle("QR Capture", for: .normal)
-
-        if photoCaptureSession == nil {
-            photoCaptureSession = PhotoCaptureSession(captureDelegate: self, videoPreviewView: self.view)
-            photoCaptureButton.setTitle("Take photo!", for: .normal)
-            photoCaptureButton.setNeedsLayout()
-            photoCaptureSession?.startRunning()
-        } else {
-            if (photoCaptureSession?.takePhoto)! {
-            } else {
-                photoCaptureSession?.takePhoto = true
-            }
-        }
-        bringSubviewsToFront()
+//
+//        qrandphotoCaptureSession = nil
+//        qrCodeLabel.text = ""
+//        qrCaptureButton.setTitle("QR Capture", for: .normal)
+//
+//        if photoCaptureSession == nil {
+//            photoCaptureSession = PhotoCaptureSession(captureDelegate: self, videoPreviewView: self.view)
+//            photoCaptureButton.setTitle("Take photo!", for: .normal)
+//            photoCaptureButton.setNeedsLayout()
+//            photoCaptureSession?.startRunning()
+//        } else {
+//            if (photoCaptureSession?.takePhoto)! {
+//            } else {
+//                photoCaptureSession?.takePhoto = true
+//            }
+//        }
+//        bringSubviewsToFront()
     }
 
 
@@ -100,7 +97,7 @@ extension QR_and_PhotoCaptureViewController: QRCaptureDelegate {
         DispatchQueue.main.async{
             self.qrCodeLabel.text = code
         }
-       qrCaptureSession?.stopRunning()
+       qrandphotoCaptureSession?.stopRunning()
     }
 }
 
