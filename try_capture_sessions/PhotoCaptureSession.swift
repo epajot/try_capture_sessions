@@ -64,20 +64,12 @@ class PhotoCaptureSession: NSObject {
             // Set the input device on the capture session.
             session.addInput(input)
 
-            // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
-            let captureMetadataOutput = AVCaptureMetadataOutput()
-            session.addOutput(captureMetadataOutput)
-
+            // Initialize a AVCaptureVideoDataOutput object and set it as the output device to the capture session.
             let dataOutput = AVCaptureVideoDataOutput()
             dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString):NSNumber(value:kCVPixelFormatType_32BGRA)] as [String : Any]
 
             dataOutput.alwaysDiscardsLateVideoFrames = true
-
-            if session.canAddOutput(dataOutput) {
-                session.addOutput(dataOutput)
-            } else {
-                print("*** failed to addOutput")
-            }
+            session.addOutput(dataOutput)
 
             let queue = DispatchQueue(label: "try-capture-sessions.captureQueue")
             dataOutput.setSampleBufferDelegate(self, queue: queue)
