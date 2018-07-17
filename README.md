@@ -11,6 +11,6 @@ class QR_and_PhotoCaptureSession
 ```
 Client code, typically a ViewController, instantiates one of these classes, provides the delegate(s) for the session to return the captured items (QR code string or image).
 
-`QR_or_PhotoCaptureViewController` instantiates a `QRCaptureSession` and a `PhotoCaptureSession`, and uses them alternately to perform the QR capture and the photo capture.
+`QR_or_PhotoCaptureViewController` instantiates alternately a `QRCaptureSession` and a `PhotoCaptureSession`, to perform the QR capture and the photo capture, repectively.
 
- `QR_and_PhotoCaptureViewController` instantiates a `QR_and_PhotoCaptureSession`
+ `QR_and_PhotoCaptureViewController` instantiates a `QR_and_PhotoCaptureSession` which can perform both captures on the same video stream from the iOS device's back camera. This results in a smooth transition between the two modes of operation.
