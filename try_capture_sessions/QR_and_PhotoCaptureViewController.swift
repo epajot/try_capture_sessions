@@ -10,16 +10,14 @@ import UIKit
 
 class QR_and_PhotoCaptureViewController: UIViewController {
 
-    var qrandphotoCaptureSession: QR_and_PhotoCaptureSession?
+    var qrAndPhotoCaptureSession: QR_and_PhotoCaptureSession?
 //    var photoCaptureSession: PhotoCaptureSession?
 
     @IBOutlet weak var qrCaptureButton: UIButton!
     @IBOutlet weak var photoCaptureButton: UIButton!
-
     @IBOutlet weak var qrCodeLabel: UILabel!
-    
     @IBOutlet weak var photoImageView: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("--- QR_and_PhotoCaptureViewController viewDidLoad")
@@ -35,26 +33,26 @@ class QR_and_PhotoCaptureViewController: UIViewController {
         print("--- QR_and_PhotoCaptureViewController viewDidDisappear")
     }
 
-    @IBAction func qrCaptureTapped(_ sender: Any) {
-        print("... qrCaptureTapped")
+    @IBAction func qrCaptureButtonTapped(_ sender: UIButton) {
+        print("... qrCaptureButtonTapped")
         qrCaptureButton.isSelected = true
-        photoCaptureButton.isSelected = false
+        photoCaptureButton.isSelected = true
         qrCaptureOn() 
     }
 
     func qrCaptureOn() {
-        if qrandphotoCaptureSession == nil {
-            qrandphotoCaptureSession = QR_and_PhotoCaptureSession(qrCaptureDelegate: self, videoPreviewView: self.view)
+        if qrAndPhotoCaptureSession == nil {
+            qrAndPhotoCaptureSession = QR_and_PhotoCaptureSession(qrCaptureDelegate: self, photoCaptureDelegate: self, videoPreviewView: self.view)
         }
-//        qrCodeLabel.text = ""
-        qrandphotoCaptureSession?.startRunning()
+        qrCodeLabel.text = ""
+        qrAndPhotoCaptureSession?.startRunning()
         bringSubviewsToFront()
     }
     
-    @IBAction func photoCaptureTapped(_ sender: Any) {
-        print("... photoCaptureTapped")
-        qrCaptureButton.isSelected = false
-        photoCaptureButton.isSelected = true
+    @IBAction func photoCaptureButtonTapped(_ sender: UIButton) {
+        print("... photoCaptureButtonTapped")
+//        qrCaptureButton.isSelected = false
+//        photoCaptureButton.isSelected = true
         photoCaptureOn()
     }
 
@@ -70,10 +68,12 @@ class QR_and_PhotoCaptureViewController: UIViewController {
 //            photoCaptureButton.setNeedsLayout()
 //            photoCaptureSession?.startRunning()
 //        } else {
-//            if (photoCaptureSession?.takePhoto)! {
-//            } else {
-//                photoCaptureSession?.takePhoto = true
-//            }
+        qrAndPhotoCaptureSession?.startRunning()
+
+            if (qrAndPhotoCaptureSession?.takePhoto)! {
+            } else {
+                qrAndPhotoCaptureSession?.takePhoto = true
+            }
 //        }
 //        bringSubviewsToFront()
     }
@@ -81,11 +81,10 @@ class QR_and_PhotoCaptureViewController: UIViewController {
 
 
     func bringSubviewsToFront() {
-//        view.bringSubview(toFront: photoImageView)
-//        view.bringSubview(toFront: photoCaptureButton)
-//        view.bringSubview(toFront: qrCodeLabel)
-//        view.bringSubview(toFront: qrCaptureButton)
-//        print("qrCaptureButton.frame", qrCaptureButton.frame)
+        view.bringSubview(toFront: photoImageView)
+        view.bringSubview(toFront: photoCaptureButton)
+        view.bringSubview(toFront: qrCodeLabel)
+        view.bringSubview(toFront: qrCaptureButton)
     }
 }
 
@@ -97,7 +96,7 @@ extension QR_and_PhotoCaptureViewController: QRCaptureDelegate {
         DispatchQueue.main.async{
             self.qrCodeLabel.text = code
         }
-       qrandphotoCaptureSession?.stopRunning()
+       qrAndPhotoCaptureSession?.stopRunning()
     }
 }
 

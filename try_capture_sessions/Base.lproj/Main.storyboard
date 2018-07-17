@@ -11,22 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--QR+Photo-->
-        <scene sceneID="J2v-jl-fir">
-            <objects>
-                <viewController id="6AF-fa-wx1" customClass="QR_and_PhotoCaptureViewController" customModule="try_capture_sessions" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="F9e-mB-o40">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="fDV-A0-cJp"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="QR+Photo" image="Photo Camera Icon" id="4jF-Ac-jM6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bkN-VW-dBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1875" y="-716"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8be-lO-h0z">
             <objects>
@@ -38,7 +22,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="lhd-uK-RA3"/>
-                        <segue destination="6AF-fa-wx1" kind="relationship" relationship="viewControllers" id="5pT-Sv-7Pj"/>
+                        <segue destination="EHT-Cy-6y5" kind="relationship" relationship="viewControllers" id="QZ4-wl-Ahd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpH-mt-im8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,7 +55,7 @@
                                     <action selector="photoCaptureTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="thH-br-fQB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-wT-MoW" userLabel="QR Code Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-wT-MoW" userLabel="QR Code Label">
                                 <rect key="frame" x="20" y="475" width="157.5" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -115,7 +99,79 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1740" y="-38"/>
+            <point key="canvasLocation" x="-2126" y="-385"/>
+        </scene>
+        <!--QR + Photo-->
+        <scene sceneID="ijU-eh-F4k">
+            <objects>
+                <viewController id="EHT-Cy-6y5" customClass="QR_and_PhotoCaptureViewController" customModule="try_capture_sessions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bbs-2P-ZuX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sc-ir-ol6">
+                                <rect key="frame" x="20" y="539" width="157.5" height="34"/>
+                                <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="QR Capture"/>
+                                <connections>
+                                    <action selector="qrCaptureButtonTapped:" destination="EHT-Cy-6y5" eventType="touchUpInside" id="JUg-kg-Xq1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mge-qk-5hF">
+                                <rect key="frame" x="197.5" y="539" width="157.5" height="34"/>
+                                <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Take Photo!"/>
+                                <connections>
+                                    <action selector="photoCaptureButtonTapped:" destination="EHT-Cy-6y5" eventType="touchUpInside" id="J5j-AU-Hyh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPK-9i-B9t" userLabel="QR Code Label">
+                                <rect key="frame" x="20" y="475" width="157.5" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.70966715359999999" blue="0.088372796049999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qyd-yo-Qy6">
+                                <rect key="frame" x="197.5" y="70" width="157.5" height="157.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Qyd-yo-Qy6" secondAttribute="height" multiplier="1:1" id="dln-No-6hy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mge-qk-5hF" firstAttribute="leading" secondItem="Qyd-yo-Qy6" secondAttribute="leading" id="9tR-hW-BfT"/>
+                            <constraint firstItem="7Sc-ir-ol6" firstAttribute="height" secondItem="lPK-9i-B9t" secondAttribute="height" id="Dtw-FX-9k9"/>
+                            <constraint firstItem="Mge-qk-5hF" firstAttribute="leading" secondItem="7Sc-ir-ol6" secondAttribute="trailing" constant="20" id="EVZ-Gv-QxV"/>
+                            <constraint firstItem="e05-Dm-2Mn" firstAttribute="bottom" secondItem="7Sc-ir-ol6" secondAttribute="bottom" constant="45" id="KYO-Oc-c1H"/>
+                            <constraint firstItem="7Sc-ir-ol6" firstAttribute="leading" secondItem="e05-Dm-2Mn" secondAttribute="leading" constant="20" id="NwB-b9-Kqh"/>
+                            <constraint firstItem="7Sc-ir-ol6" firstAttribute="top" secondItem="lPK-9i-B9t" secondAttribute="bottom" constant="30" id="QUA-XA-pcf"/>
+                            <constraint firstItem="Qyd-yo-Qy6" firstAttribute="top" secondItem="e05-Dm-2Mn" secondAttribute="top" constant="50" id="f8B-Ay-JmJ"/>
+                            <constraint firstItem="7Sc-ir-ol6" firstAttribute="leading" secondItem="lPK-9i-B9t" secondAttribute="leading" id="mRv-KQ-vdi"/>
+                            <constraint firstItem="e05-Dm-2Mn" firstAttribute="trailing" secondItem="Mge-qk-5hF" secondAttribute="trailing" constant="20" id="mU8-ca-qXs"/>
+                            <constraint firstItem="7Sc-ir-ol6" firstAttribute="width" secondItem="lPK-9i-B9t" secondAttribute="width" id="r4T-gi-Jhr"/>
+                            <constraint firstItem="e05-Dm-2Mn" firstAttribute="bottom" secondItem="Mge-qk-5hF" secondAttribute="bottom" constant="45" id="rbs-pg-UDi"/>
+                            <constraint firstItem="Mge-qk-5hF" firstAttribute="width" secondItem="7Sc-ir-ol6" secondAttribute="width" id="vHi-D3-oyc"/>
+                            <constraint firstItem="Mge-qk-5hF" firstAttribute="width" secondItem="Qyd-yo-Qy6" secondAttribute="width" id="y3B-PC-2ny"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="e05-Dm-2Mn"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="QR + Photo" image="Photo Camera Icon" id="0jq-Pd-FPE"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="photoCaptureButton" destination="Mge-qk-5hF" id="9HK-3z-ZV4"/>
+                        <outlet property="photoImageView" destination="Qyd-yo-Qy6" id="f5W-E9-SqM"/>
+                        <outlet property="qrCaptureButton" destination="7Sc-ir-ol6" id="fEL-GZ-a1X"/>
+                        <outlet property="qrCodeLabel" destination="lPK-9i-B9t" id="hNo-13-B36"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dt4-kN-zdj" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1458" y="-385"/>
         </scene>
     </scenes>
     <resources>

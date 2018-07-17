@@ -30,6 +30,7 @@ class QR_and_PhotoCaptureSession: NSObject {
                               AVMetadataObject.ObjectType.qr]
 
     private weak var qrCaptureDelegate: QRCaptureDelegate?
+    private weak var photoCaptureDelegate: PhotoCaptureDelegate?
     weak var previewView: UIView?
 
     private var qrCaptureSession: AVCaptureSession?
@@ -42,6 +43,8 @@ class QR_and_PhotoCaptureSession: NSObject {
         return view
     }()
 
+    var takePhoto = false
+
     var isRunning: Bool { return self.qrCaptureSession!.isRunning }
 
     func startRunning() {
@@ -51,8 +54,9 @@ class QR_and_PhotoCaptureSession: NSObject {
 
     func stopRunning() { self.qrCaptureSession?.stopRunning() }
 
-    init(qrCaptureDelegate: QRCaptureDelegate, videoPreviewView: UIView) {
+    init(qrCaptureDelegate: QRCaptureDelegate, photoCaptureDelegate: PhotoCaptureDelegate, videoPreviewView: UIView) {
         self.qrCaptureDelegate = qrCaptureDelegate
+        self.photoCaptureDelegate = photoCaptureDelegate
         self.previewView = videoPreviewView
         super.init()
         self.qrCaptureSession = createSession()
@@ -93,6 +97,16 @@ class QR_and_PhotoCaptureSession: NSObject {
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = self.supportedCodeTypes
 
+            // Initialize a AVCaptureVideoDataOutput object and set it as the output device to the capture session.
+            let dataOutput = AVCaptureVideoDataOutput()
+            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString):NSNumber(value:kCVPixelFormatType_32BGRA)] as [String : Any]
+
+            dataOutput.alwaysDiscardsLateVideoFrames = true
+            session.addOutput(dataOutput)
+
+            let queue = DispatchQueue(label: "try-capture-sessions.captureQueue")
+            dataOutput.setSampleBufferDelegate(self, queue: queue)
+
         } catch {
             // If any error occurs, simply print it and return.
             print(error)
@@ -119,28 +133,66 @@ class QR_and_PhotoCaptureSession: NSObject {
 
 extension QR_and_PhotoCaptureSession: AVCaptureMetadataOutputObjectsDelegate {
 
-//    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-//
-//        // Check that the metadataObjects array contains at least one object.
-//        if metadataObjects.count == 0 {
-//            self.qrCodeFrameView.frame = CGRect.zero
-//            return
-//        }
-//
-//        // Get the metadata object.
-//        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-//
-//        if self.supportedCodeTypes.contains(metadataObj.type) {
-//            // Is the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
-//            let barCodeObject = self.previewLayer?.transformedMetadataObject(for: metadataObj)
-//            self.qrCodeFrameView.frame = barCodeObject!.bounds
-//
-//            if metadataObj.stringValue != nil {
-//                // pass the decoded QRCode/barcode string value to the delegate
-//                qrCaptureDelegate?.qrCodeCaptured(code: metadataObj.stringValue! as String)
-//            }
-//        }
-//    }
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+
+        // Check that the metadataObjects array contains at least one object.
+        if metadataObjects.count == 0 {
+            self.qrCodeFrameView.frame = CGRect.zero
+            return
+        }
+
+        // Get the metadata object.
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+
+        if self.supportedCodeTypes.contains(metadataObj.type) {
+            // Is the found metadata is equal to the QR code metadata (or barcode) then update the status label's text and set the bounds
+            let barCodeObject = self.previewLayer?.transformedMetadataObject(for: metadataObj)
+            self.qrCodeFrameView.frame = barCodeObject!.bounds
+
+            if metadataObj.stringValue != nil {
+                // pass the decoded QRCode/barcode string value to the delegate
+                qrCaptureDelegate?.qrCodeCaptured(code: metadataObj.stringValue! as String)
+            }
+        }
+    }
 }
+
+
+extension QR_and_PhotoCaptureSession: AVCaptureVideoDataOutputSampleBufferDelegate {
+
+    func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+
+        //print("captureOutput")
+
+        if takePhoto {
+
+            if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer) {
+                takePhoto = false
+
+                print("captureOutput image.size", image.size)
+
+                // call the delegate to deliver the image
+                self.photoCaptureDelegate?.imageCaptured(image: image)
+            }
+        }
+    }
+
+    func getImageFromSampleBuffer (buffer:CMSampleBuffer) -> UIImage? {
+        if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            let context = CIContext()
+
+            let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
+
+            if let image = context.createCGImage(ciImage, from: imageRect) {
+                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
+            }
+        }
+        return nil
+    }
+
+}
+
+
 
 
