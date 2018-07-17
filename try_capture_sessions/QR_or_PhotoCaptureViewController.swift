@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  QRorPhotoCaptureViewController.swift
 //  try_capture_sessions
 //
 //  Created by Rudolf Farkas on 16.07.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class QR_or_PhotoCaptureViewController: UIViewController {
 
     var qrCaptureSession: QRCaptureSession?
     var photoCaptureSession: PhotoCaptureSession?
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: QRCaptureDelegate {
+extension QR_or_PhotoCaptureViewController: QRCaptureDelegate {
 
     func qrCodeCaptured(code: String) {
         print("qrCodeCaptured", code)
@@ -95,7 +95,7 @@ extension ViewController: QRCaptureDelegate {
     }
 }
 
-extension ViewController: PhotoCaptureDelegate {
+extension QR_or_PhotoCaptureViewController: PhotoCaptureDelegate {
 
     func imageCaptured(image: UIImage) {
         print("ViewController: imageCaptured", image.size)
